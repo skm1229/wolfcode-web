@@ -32,25 +32,25 @@ public class GeneratorTest {
     public static void main(String[] args) {
         GeneratorUtils.generator(
                 "web",
-                "com.nebula.web.modules",
-                "demomodule",
+                "cn.wolfcode.web.modules",
+                "customer",
                 DbType.MYSQL,
-                "/Users/chenshiyun/Desktop/code",
+                "D:\\sql生成",
                 // 页面上的父上下文
                 // 自己的上下文
                 "1111",
-                "Mode演示菜单",
+                "企业客户管理",
                 null,
-                "sys",
-                "demotest",
-                "陈天狼",
+                "cust",
+                "customer",
+                "FUCK",
                 "127.0.0.1",
                 "3306",
-                "nojoke",
+                "nojoke?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf8",
                 "root",
-                "12345678",
+                "root",
                 new String[]{"bmd_", "mp_", "SYS_"},
-                new String[]{"DEMO_TEST"},false
+                new String[]{"tb_customer"},false
         );
     }
 

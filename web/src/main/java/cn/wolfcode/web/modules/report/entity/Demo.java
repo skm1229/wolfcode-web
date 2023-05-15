@@ -2,6 +2,7 @@ package cn.wolfcode.web.modules.report.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @TableName("DEMO")
+@Data
 @ToString
 public class Demo implements Serializable {
 
@@ -21,5 +23,6 @@ public class Demo implements Serializable {
     private String name;
     private String info;
     private LocalDateTime createTime;
+    private Integer age;
 
 }
