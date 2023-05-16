@@ -35,6 +35,7 @@ public class TbCustomer implements Serializable {
 
     /**
      * 成立时间
+     * S
      */
     private LocalDate registerDate;
 

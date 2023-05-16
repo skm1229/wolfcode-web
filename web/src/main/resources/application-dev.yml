@@ -7,7 +7,7 @@ datasource:
     port: 3306
     username: root
     password: root
-    url: jdbc:mysql://${datasource.mysql.ip}:${datasource.mysql.port}/${datasource.mysql.database}?useSSL=false&serverTimezone=UTC&characterEncoding=utf8
+    url: jdbc:mysql://${datasource.mysql.ip}:${datasource.mysql.port}/${datasource.mysql.database}?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf8
   redis:
     database: 0
     ip: localhost

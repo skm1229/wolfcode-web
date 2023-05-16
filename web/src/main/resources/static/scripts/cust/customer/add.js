@@ -1,7 +1,14 @@
-layui.use(['form', 'layer'], function () {
+layui.use(['form', 'layer','laydate'], function () {
     var form = layui.form,
         layer = layui.layer,
+        //laydate时间组件
+        laydate = layui.laydate,
         $ = layui.jquery;
+    //执行一个laydate实列
+    laydate.render({
+        elem: '#registerDate',
+        trigger: 'click'
+    });
 
     form.on('submit(Add-filter)', function (data) {
         $.ajax({

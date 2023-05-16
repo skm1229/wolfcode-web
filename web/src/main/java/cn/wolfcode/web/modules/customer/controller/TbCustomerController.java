@@ -1,6 +1,7 @@
 package cn.wolfcode.web.modules.customer.controller;
 
 import cn.wolfcode.web.commons.entity.LayuiPage;
+import cn.wolfcode.web.commons.utils.CityUtils;
 import cn.wolfcode.web.commons.utils.LayuiTools;
 import cn.wolfcode.web.commons.utils.SystemCheckUtils;
 import cn.wolfcode.web.modules.BaseController;
@@ -43,9 +44,12 @@ public class TbCustomerController extends BaseController {
     @RequestMapping("/add.html")
     @PreAuthorize("hasAuthority('cust:customer:add')")
     public ModelAndView toAdd(ModelAndView mv) {
+        // 通过mv对象把CityUtils类的citys对象返回给add页面，add页面可以直接使用
+        mv.addObject("citys", CityUtils.citys);
         mv.setViewName("cust/customer/add");
         return mv;
     }
+
 
     @GetMapping("/{id}.html")
     @PreAuthorize("hasAuthority('cust:customer:update')")
@@ -53,6 +57,7 @@ public class TbCustomerController extends BaseController {
         mv.setViewName("cust/customer/update");
         mv.addObject("obj", entityService.getById(id));
         mv.addObject("id", id);
+        mv.addObject("citys",CityUtils.citys);
         return mv;
     }
 
