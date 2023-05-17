@@ -19,12 +19,12 @@
         <form class="layui-form" action="" lay-filter="component-form-element">
             <div class="layui-row layui-col-space10 layui-form-item">
 
-                <div class="layui-col-lg6">
-                        <label class="layui-form-label">id</label>
-                    <div class="layui-input-block">
-                        <input type="text"  name="id"  placeholder="请输入"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
+<#--                <div class="layui-col-lg6">-->
+<#--                        <label class="layui-form-label">id</label>-->
+<#--                    <div class="layui-input-block">-->
+<#--                        <input type="text"  name="id"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
+<#--                    </div>-->
+<#--                </div>-->
                 <div class="layui-col-lg6">
                         <label class="layui-form-label">企业名称</label>
                     <div class="layui-input-block">
@@ -59,7 +59,7 @@
                         <label class="layui-form-label">所属地区省份</label>
                     <div class="layui-input-block">
 <#--                        <input type="text"  name="province"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
-                        果图
+
                         <select name="province">
                             <option value= "">--请选择--</option>
                             <#list citys as city>
@@ -92,24 +92,24 @@
                         <input type="text"  name="regAddr"  placeholder="请输入"  autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <div class="layui-col-lg6">
-                        <label class="layui-form-label">录入时间</label>
-                    <div class="layui-input-block">
-                        <input type="text"  name="inputTime"  placeholder="请输入"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-col-lg6">
-                        <label class="layui-form-label">修改时间</label>
-                    <div class="layui-input-block">
-                        <input type="text"  name="updateTime"  placeholder="请输入"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-col-lg6">
-                        <label class="layui-form-label">录入人</label>
-                    <div class="layui-input-block">
-                        <input type="text"  name="inputUserId"  placeholder="请输入"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
+<#--                <div class="layui-col-lg6">-->
+<#--                        <label class="layui-form-label">录入时间</label>-->
+<#--                    <div class="layui-input-block">-->
+<#--                        <input type="text"  name="inputTime"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
+<#--                    </div>-->
+<#--                </div>-->
+<#--                <div class="layui-col-lg6">-->
+<#--                        <label class="layui-form-label">修改时间</label>-->
+<#--                    <div class="layui-input-block">-->
+<#--                        <input type="text"  name="updateTime"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
+<#--                    </div>-->
+<#--                </div>-->
+<#--                <div class="layui-col-lg6">-->
+<#--                        <label class="layui-form-label">录入人</label>-->
+<#--                    <div class="layui-input-block">-->
+<#--                        <input type="text"  name="inputUserId"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
+<#--                    </div>-->
+<#--                </div>-->
 
             </div>
             <div class="layui-form-item">

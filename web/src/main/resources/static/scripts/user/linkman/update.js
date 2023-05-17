@@ -1,18 +1,12 @@
-layui.use(['form', 'layer','laydate'], function () {
+layui.use(['form', 'layer'], function () {
     var form = layui.form,
         layer = layui.layer,
-        //laydate时间组件
-        laydate = layui.laydate,
         $ = layui.jquery;
-    //执行一个laydate实列
-    laydate.render({
-        elem: '#registerDate',
-        trigger: 'click'
-    });
+
 
     form.on('submit(Add-filter)', function (data) {
         $.ajax({
-            url: web.rootPath() + "customer/update",
+            url: web.rootPath() + "linkman/update",
             contentType: "application/json",
             type: "put",
             data: JSON.stringify(data.field),
@@ -26,11 +20,7 @@ layui.use(['form', 'layer','laydate'], function () {
                 });
             },
             error: function (e) {
-                if (e.responseJSON.errCode === 1003){
-                    layer.msg(e.responseJSON.data.toString(), {icon: 2});
-                }else {
-                    layer.msg(e.responseJSON.message, {icon: 2});
-                }
+                layer.msg(e.responseJSON.message, {icon: 2});
             }
 
         })
