@@ -21,7 +21,7 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
         cols: [[
             {type: "checkbox", fixed: "left", width: 50},
                     {field: 'id', title:  'id', minWidth: 100, align: "center"},
-                    {field: 'custId', title: '客户id', minWidth: 100, align: "center"},
+                    {field: 'custId', title: '所属企业', minWidth: 100, align: "center"},
                     {field: 'linkman', title: '联系人名字', minWidth: 100, align: "center"},
                     {field: 'sex', title: '性别 1 男 0 女', minWidth: 100, align: "center"},
                     {field: 'age', title: '年龄', minWidth: 100, align: "center"},
@@ -31,6 +31,17 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
                     {field: 'remark', title: '备注信息', minWidth: 100, align: "center"},
                     {field: 'inputUser', title: '录入人', minWidth: 100, align: "center"},
                     {field: 'inputTime', title: '录入时间', minWidth: 100, align: "center"},
+            {
+                field: 'appointmentStatus', title: '任职状态', minWidth: 100, align: "center",
+                templet: function (linkman) {
+                    if (linkman.appointmentStatus == '1') {
+                        return "<button class=\"layui-btn layui-btn-normal layui-btn-xs\">任职 </button>";
+                    } else if (linkman.appointmentStatus == '0') {
+                        return "<button class=\"layui-btn layui-btn-danger layui-btn-xs\">离职 </button>";
+                    }
+                },
+            },
+
 
             {title: '操作', width: 160, templet: '#List-editBar', fixed: "right", align: "center"}
         ]],
@@ -52,18 +63,20 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
             case 'export':
                 layer.msg("export");
                 break;
-        }
-        ;
+        };
     });
 
     var $ = layui.$, active = {
         reload: function () {
             //获取搜索条件值
             var parameterName = $("#searchForm").find("input[name='parameterName']").val().trim();
+            //获取所属企业下拉框条件值
+            var custId = $("#searchForm").find("select[name='custId']").val().trim();
             //表格重载
             tableIns.reload({
                 where: { //设定异步数据接口的额外参数，任意设
-                    parameterName: parameterName
+                    parameterName: parameterName,
+                    custId: custId
                 }
             });
         }
@@ -87,10 +100,36 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
                 maxmin: true,
                 content: web.rootPath() + 'linkman/add.html'
             });
-        }
-        ;
+        };
+        if (obj.event == 'export'){
+            // layer.msg("导出事件绑定成功");
+            var eix;
+            //把查询条件发给后端
+            //获取搜索条件值
+            var parameterName = $("#searchForm").find("input[name='parameterName']").val().trim();
+            //获取所属企业下拉框条件值
+            var custId = $("#searchForm").find("select[name='custId']").val().trim();
+            var url = web.rootPath() + 'linkman/export?parameterName=' + parameterName + '&custId=' + custId
+            $.fileDownload(url,{
+                httpMethod:'POST',
+                prepareCallback: function (url) {
+                    //加载风格
+                    eix = layer.load(2);
+                },
+                successCallback: function (url) {
+                    layer.close(eix);
+                },
+                failCallback: function (html, url) {
+                    layer.close(eix);
+                    layer.msg("导出失败", {icon: 2});
+                }
+            });
+        };
     });
-    //监听工具条
+
+
+
+            //监听工具条
     table.on('tool(List-toolbar)', function (obj) {
         var data = obj.data;
         switch (obj.event) {

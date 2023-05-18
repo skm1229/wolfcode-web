@@ -44,9 +44,14 @@
                     </div>
                 </div>
                 <div class="layui-col-lg6">
-                        <label class="layui-form-label">性别 1 男 0 女</label>
+                        <label class="layui-form-label">性别</label>
                     <div class="layui-input-block">
-                        <input type="text"  name="sex"  placeholder="请输入"  autocomplete="off" class="layui-input">
+<#--                        <input type="text"  name="sex"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
+                        <select name="sex">
+                            <option>--请选择--</option>
+                            <option value="1">男</option>
+                            <option value="0">女</option>
+                        </select>
                     </div>
                 </div>
                 <div class="layui-col-lg6">
@@ -74,6 +79,15 @@
                     </div>
                 </div>
                 <div class="layui-col-lg6">
+                    <label class="layui-form-label">任职状态</label>
+                    <div class="layui-input-block">
+                        <select name="appointmentStatus">
+                            <option value="1">任职</option>
+                            <option value="0">离职</option>
+                        </select>
+                    </div>
+
+                    <div class="layui-col-lg6">
                         <label class="layui-form-label">备注信息</label>
                     <div class="layui-input-block">
                         <input type="text"  name="remark"  placeholder="请输入"  autocomplete="off" class="layui-input">

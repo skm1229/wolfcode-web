@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wolfcode.web.modules.linkman.mapper.TbCustLinkmanMapper">
+    <select id="selectByPageByparmByCustId" resultType="cn.wolfcode.web.modules.linkman.entity.TbCustLinkmanVo">
+        SELECT
+        tb_cust_linkman.*, customer_name,
+        NICK_NAME inputUserName
+        FROM
+        tb_cust_linkman
+        LEFT JOIN tb_customer ON tb_cust_linkman.cust_id = tb_customer.id
+        LEFT JOIN sys_user_info ON tb_cust_linkman.input_user = sys_user_info.USER_ID
+        <where>
+            <if test="parameterName != null and parameterName != ''">
+                (
+                tb_cust_linkman.linkman LIKE CONCAT('%', #{parameterName}, '%')
+                OR tb_cust_linkman.phone LIKE CONCAT('%', #{parameterName}, '%')
+                )
+            </if>
+            <if test="custId != null and custId != ''">
+                AND tb_cust_linkman.cust_id = #{custId}
+            </if>
+        </where>
+    </select>
+</mapper>

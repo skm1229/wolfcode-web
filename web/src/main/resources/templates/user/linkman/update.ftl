@@ -52,7 +52,8 @@
                                     <option value="${cust.id}">${cust.customerName}</option>
                                 </#if>
                             </#list>
-                        </select
+                        </select>
+                </div>
                 </div>
 
 
@@ -69,7 +70,7 @@
 
 
                 <div class="layui-col-lg6">
-                        <label class="layui-form-label">性别 1 男 0 女</label>
+                    <label class="layui-form-label">性别</label>
                     <div class="layui-input-block">
 <#--                        <input type="text"-->
 <#--                               name="sex"-->
@@ -77,13 +78,12 @@
 <#--                               autocomplete="off"-->
 <#--                               class="layui-input">-->
 <#--                    </div>-->
-
                         <select name="sex">
                             <option value="1" <#if obj.sex=1>selected</#if>>男</option>
                             <option value="0" <#if obj.sex=0>selected</#if>>女</option>
                         </select>
                 </div>
-
+                </div>
 
                 <div class="layui-col-lg6">
                         <label class="layui-form-label">年龄</label>
@@ -131,9 +131,18 @@
                                class="layui-input">
                     </div>
                 </div>
+                    <div class="layui-col-lg6">
+                        <label class="layui-form-label">任职状态</label>
+                        <div class="layui-input-block">
+                            <select name="appointmentStatus">
+                                <option value="1" <#if obj.appointmentStatus=1>selected</#if>>任职</option>
+                                <option value="0" <#if obj.appointmentStatus=0>selected</#if>>离职</option>
+                            </select>
+                        </div>
+                    </div>
 
 
-                <div class="layui-col-lg6">
+                        <div class="layui-col-lg6">
                         <label class="layui-form-label">备注信息</label>
                     <div class="layui-input-block">
                         <input type="text"

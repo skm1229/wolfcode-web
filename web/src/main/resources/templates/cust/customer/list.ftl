@@ -32,6 +32,29 @@
                                            class="layui-input">
                                 </div>
                             </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">省份</label>
+                                <div class="layui-input-block input-box">
+                                    <select name="cityId">
+                                        <option value="">--请选择--</option>
+                                        <#list citys as city>
+                                            <option value="${city.key}">${city.value}</option>
+                                        </#list>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label">经营状态</label>
+                                <div class="layui-input-block input-box">
+                                    <select name="openStatus">
+                                        <option value="">--请选择--</option>
+                                        <option value="0">开业</option>
+                                        <option value="1">注销</option>
+                                        <option value="2">破产</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             <div class="layui-inline">
                                 <button type="button" class="layui-btn layui-btn-normal" id="SearchBtn"

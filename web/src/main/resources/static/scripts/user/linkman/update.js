@@ -20,7 +20,11 @@ layui.use(['form', 'layer'], function () {
                 });
             },
             error: function (e) {
-                layer.msg(e.responseJSON.message, {icon: 2});
+                if (e.responseJSON.errCode === 1003){
+                    layer.msg(e.responseJSON.data.toString(), {icon: 2});
+                }else {
+                    layer.msg(e.responseJSON.message, {icon: 2});
+                }
             }
 
         })

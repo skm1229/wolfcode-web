@@ -26,11 +26,11 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
                     {field: 'registerDate', title: '成立时间', minWidth: 100, align: "center"},
                     {field: 'openStatus', title: '经营状态, 0 开业、1 注销、2 破产', minWidth: 100, align: "center",templet: function (customer) {
                         if (customer.openStatus == '0') {
-                            return "<button class=\"layui-btn layui-btnnormal layui-btn-xs\">开业</button>";
+                            return "<button class=\"layui-btn layui-btn-normal layui-btn-xs\">开业</button>";
                         } else if (customer.openStatus == '1') {
-                            return "<button class=\"layui-btn layui-btndanger layui-btn-xs\">注销</button>";
+                            return "<button class=\"layui-btn layui-btn-danger layui-btn-xs\">注销</button>";
                         } else if (customer.openStatus == '2') {
-                            return "<button class=\"layui-btn layui-btndisabled layui-btn-xs\">破产</button>";
+                            return "<button class=\"layui-btn layui-btn-disabled layui-btn-xs\">破产</button>";
                         }
                     }},
                     {field: 'provinceName', title: '所属地区省份', minWidth: 100, align: "center"},
@@ -70,10 +70,16 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
         reload: function () {
             //获取搜索条件值
             var parameterName = $("#searchForm").find("input[name='parameterName']").val().trim();
+            var cityId = $("#searchForm").find("select[name='cityId']").val().trim();
+            //获取经营状态下拉框的值
+            var openStatus = $("#searchForm").find("select[name='openStatus']").val().trim();
+
             //表格重载
             tableIns.reload({
                 where: { //设定异步数据接口的额外参数，任意设
-                    parameterName: parameterName
+                    parameterName: parameterName,
+                    cityId: cityId,
+                    openStatus: openStatus
                 }
             });
         }
