@@ -1,6 +1,7 @@
 package cn.wolfcode.web.modules.linkman.entity;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
+import com.baomidou.mybatisplus.annotation.TableField;
 import link.ahsj.core.annotations.AddGroup;
 import link.ahsj.core.annotations.UpdateGroup;
 import lombok.Data;
@@ -32,6 +33,11 @@ public class TbCustLinkman implements Serializable {
     @NotBlank(message = "所属企业不能为空",groups = {AddGroup.class, UpdateGroup.class})
     private String custId;
 
+    /**
+     * 客户名称
+     */
+    @TableField(exist = false)
+    private String customerName;
 
     /**
      * 联系人名字

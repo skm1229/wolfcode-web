@@ -21,7 +21,7 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
         cols: [[
             {type: "checkbox", fixed: "left", width: 50},
                     {field: 'id', title:  'id', minWidth: 100, align: "center"},
-                    {field: 'custId', title: '所属企业', minWidth: 100, align: "center"},
+                    {field: 'customerName', title: '所属企业', minWidth: 100, align: "center"},
                     {field: 'linkman', title: '联系人名字', minWidth: 100, align: "center"},
                     {field: 'sex', title: '性别 1 男 0 女', minWidth: 100, align: "center"},
                     {field: 'age', title: '年龄', minWidth: 100, align: "center"},
@@ -29,7 +29,7 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
                     {field: 'position', title: '职位', minWidth: 100, align: "center"},
                     {field: 'department', title: '部门', minWidth: 100, align: "center"},
                     {field: 'remark', title: '备注信息', minWidth: 100, align: "center"},
-                    {field: 'inputUser', title: '录入人', minWidth: 100, align: "center"},
+                    {field: 'inputUserName', title: '录入人', minWidth: 100, align: "center"},
                     {field: 'inputTime', title: '录入时间', minWidth: 100, align: "center"},
             {
                 field: 'appointmentStatus', title: '任职状态', minWidth: 100, align: "center",
