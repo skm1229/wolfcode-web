@@ -5,12 +5,18 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
         laytpl = layui.laytpl,
         laydate = layui.laydate,
         table = layui.table;
+    laydate.render({
+        elem: '#ID-laydate-range',
+        range: ['#ID-laydate-start-date', '#ID-laydate-end-date'],
+        // trigger: 'click'
+    });
+
 
 
     //用户列表
     var tableIns = table.render({
         elem: '#List',
-        url: web.rootPath() + 'customer/list',
+        url: web.rootPath() + 'visit/list',
         cellMinWidth: 95,
         page: true,
         height: "full-" + Math.round(Number($('.layui-card-header').height()) + 44),
@@ -20,27 +26,22 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
         id: "ListTable",
         cols: [[
             {type: "checkbox", fixed: "left", width: 50},
-                    {field: 'id', title:  'id', minWidth: 100, align: "center"},
-                    {field: 'customerName', title: '企业名称', minWidth: 100, align: "center"},
-                    {field: 'legalLeader', title: '法定代表人', minWidth: 100, align: "center"},
-                    {field: 'registerDate', title: '成立时间', minWidth: 100, align: "center"},
-                    {field: 'openStatus', title: '经营状态', minWidth: 100, align: "center",templet: function (customer) {
-                        if (customer.openStatus == '0') {
-                            return "<button class=\"layui-btn layui-btn-normal layui-btn-xs\">开业</button>";
-                        } else if (customer.openStatus == '1') {
-                            return "<button class=\"layui-btn layui-btn-danger layui-btn-xs\">注销</button>";
-                        } else if (customer.openStatus == '2') {
-                            return "<button class=\"layui-btn layui-btn-disabled layui-btn-xs\">破产</button>";
-                        }
-                    }},
-                    {field: 'provinceName', title: '所属地区省份', minWidth: 100, align: "center"},
-                    {field: 'regCapital', title: '注册资本,(万元)', minWidth: 100, align: "center"},
-                    {field: 'industry', title: '所属行业', minWidth: 100, align: "center"},
-                    {field: 'scope', title: '经营范围', minWidth: 100, align: "center"},
-                    {field: 'regAddr', title: '注册地址', minWidth: 100, align: "center"},
+                    {field: 'id', title: '唯一id', minWidth: 100, align: "center"},
+                    {field: 'customerName', title: '拜访客户', minWidth: 100, align: "center"},
+                    {field: 'linkmanName', title: '联系人客户', minWidth: 100, align: "center"},
+                    {field: 'visitType', title: '拜访方式', minWidth: 100, align: "center",
+                        templet: function (contacts) {
+                            if (contacts.visitType == '1') {
+                                return "<button class=\"layui-btn layui-btn-normal layui-btn-xs\">上门走访</button>";
+                            } else if (contacts.visitType == '2') {
+                                return "<button class=\"layui-btn layui-btn-danger layui-btn-xs\">电话拜访</button>";
+                            }
+                        },},
+                    {field: 'visitReason', title: '拜访原因', minWidth: 100, align: "center"},
+                    {field: 'content', title: '交流内容', minWidth: 100, align: "center"},
+                    {field: 'visitDate', title: '拜访时间', minWidth: 100, align: "center"},
+                    {field: 'inputUserName', title: '录入人', minWidth: 100, align: "center"},
                     {field: 'inputTime', title: '录入时间', minWidth: 100, align: "center"},
-                    {field: 'updateTime', title: '修改时间', minWidth: 100, align: "center"},
-                    {field: 'inputUserId', title: '录入人', minWidth: 100, align: "center"},
 
             {title: '操作', width: 160, templet: '#List-editBar', fixed: "right", align: "center"}
         ]],
@@ -70,16 +71,14 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
         reload: function () {
             //获取搜索条件值
             var parameterName = $("#searchForm").find("input[name='parameterName']").val().trim();
-            var cityId = $("#searchForm").find("select[name='cityId']").val().trim();
-            //获取经营状态下拉框的值
-            var openStatus = $("#searchForm").find("select[name='openStatus']").val().trim();
-
+            var visitReason = $("#searchForm").find("input[name='visitReason']").val().trim();
+            var visitType = $("#searchForm").find("select[name='visitType']").val().trim();
             //表格重载
             tableIns.reload({
                 where: { //设定异步数据接口的额外参数，任意设
                     parameterName: parameterName,
-                    cityId: cityId,
-                    openStatus: openStatus
+                    visitReason: visitReason,
+                    visitType: visitType
                 }
             });
         }
@@ -101,7 +100,7 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
                 title: '新增',
                 fixed: false,
                 maxmin: true,
-                content: web.rootPath() + 'customer/add.html'
+                content: web.rootPath() + 'visit/add.html'
             });
         }
         ;
@@ -119,7 +118,7 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
                     title: '修改',
                     fixed: false,
                     maxmin: true,
-                    content: web.rootPath() + "customer/" + data.id + ".html?_"
+                    content: web.rootPath() + "visit/" + data.id + ".html?_"
                 });
                 break;
             case 'delete':
@@ -127,7 +126,7 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
                     btn: ['确定', '取消'] //按钮
                 }, function () {
                     $.ajax({
-                        url: web.rootPath() + "customer/delete/" + data.id,
+                        url: web.rootPath() + "visit/delete/" + data.id,
                         type: "delete",
                         contentType: "application/json;charset=utf-8",
                         data: JSON.stringify(data.field),

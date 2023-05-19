@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wolfcode.web.modules.contacts.mapper.TbVisitMapper">
+    <select id="selectByPageByVisitReason" resultType="cn.wolfcode.web.modules.contacts.entity.TbVisitDto">
+        SELECT
+        tb_visit.*, customer_name,
+        NICK_NAME inputUserName
+        FROM
+        tb_visit
+        LEFT JOIN tb_customer ON tb_visit.cust_id = tb_customer.id
+        LEFT JOIN sys_user_info ON tb_visit.input_user = sys_user_info.USER_ID
+        LEFT JOIN tb_cust_linkman ON tb_visit.linkman_id = tb_cust_linkman.id
+        <where>
+            <if test="parameterName != null and parameterName != ''">
+                (
+                tb_visit.visit_reason LIKE CONCAT('%', #{parameterName}, '%')
+                OR tb_visit.visit_type LIKE CONCAT('%', #{parameterName}, '%')
+                )
+            </if>
+            <if test="visitReason != null and visitReason != ''">
+                AND tb_visit.visit_reason LIKE concat('%', #{visitReason}, '%')
+            </if>
+            <if test="visitType != null and visitType != ''">
+                AND tb_visit.visit_type = #{visitType}
+            </if>
+        </where>
+    </select>
+</mapper>

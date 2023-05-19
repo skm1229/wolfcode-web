@@ -20,79 +20,81 @@
             <div class="layui-row layui-col-space10 layui-form-item">
 
 <#--                <div class="layui-col-lg6">-->
-<#--                        <label class="layui-form-label">id</label>-->
+<#--                        <label class="layui-form-label">唯一id</label>-->
 <#--                    <div class="layui-input-block">-->
 <#--                        <input type="text"  name="id"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
 <#--                    </div>-->
 <#--                </div>-->
-                <div class="layui-col-lg6">
-                        <label class="layui-form-label">所属企业</label>
-                    <div class="layui-input-block">
+<#--                <div class="layui-col-lg6">-->
+<#--                        <label class="layui-form-label">客户id</label>-->
+<#--                    <div class="layui-input-block">-->
 <#--                        <input type="text"  name="custId"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
+<#--                    </div>-->
+<#--                </div>-->
+                <div class="layui-col-lg6">
+                    <label class="layui-form-label">拜访客户</label>
+                    <div class="layui-input-block">
+                        <#--                        <input type="text"  name="custId"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
                         <select name="custId">
                             <option value= "">--请选择--</option>
-                        <#list custs as cust>
-                            <option value="${cust.id}">${cust.customerName}</option>
-                        </#list>
+                            <#list custs as cust>
+                                <option value="${cust.id}">${cust.customerName}</option>
+                            </#list>
                         </select>
                     </div>
                 </div>
-                <div class="layui-col-lg6">
-                        <label class="layui-form-label">联系人名字</label>
-                    <div class="layui-input-block">
-                        <input type="text"  name="linkman"  placeholder="请输入"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-col-lg6">
-                        <label class="layui-form-label">性别</label>
-                    <div class="layui-input-block">
-<#--                        <input type="text"  name="sex"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
-                        <select name="sex">
-                            <option value= "">--请选择--</option>
-                            <option value="1">男</option>
-                            <option value="0">女</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-col-lg6">
-                        <label class="layui-form-label">年龄</label>
-                    <div class="layui-input-block">
-                        <input type="text"  name="age"  placeholder="请输入"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-col-lg6">
-                        <label class="layui-form-label">联系人电话</label>
-                    <div class="layui-input-block">
-                        <input type="text"  name="phone"  placeholder="请输入"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-col-lg6">
-                        <label class="layui-form-label">职位</label>
-                    <div class="layui-input-block">
-                        <input type="text"  name="position"  placeholder="请输入"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-col-lg6">
-                        <label class="layui-form-label">部门</label>
-                    <div class="layui-input-block">
-                        <input type="text"  name="department"  placeholder="请输入"  autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-col-lg6">
-                    <label class="layui-form-label">任职状态</label>
-                    <div class="layui-input-block">
-                        <select name="appointmentStatus">
-                            <option value="1">任职</option>
-                            <option value="0">离职</option>
-                        </select>
-                    </div>
+<#--                <div class="layui-col-lg6">-->
+<#--                        <label class="layui-form-label">联系人id</label>-->
+<#--                    <div class="layui-input-block">-->
+<#--                        <input type="text"  name="linkmanId"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
+<#--                    </div>-->
+<#--                </div>-->
 
-                    <div class="layui-col-lg6">
-                        <label class="layui-form-label">备注信息</label>
+                <div class="layui-col-lg6">
+                    <label class="layui-form-label">客户联系人</label>
                     <div class="layui-input-block">
-                        <input type="text"  name="remark"  placeholder="请输入"  autocomplete="off" class="layui-input">
+                        <#--                        <input type="text"  name="custId"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
+                        <select name="linkmanId">
+                            <option value= "">--请选择--</option>
+                            <#list linkmans as linkman>
+                                <option value="${linkman.id}">${linkman.linkman}</option>
+                            </#list>
+                        </select>
                     </div>
                 </div>
+
+
+                <div class="layui-col-lg6">
+                        <label class="layui-form-label">拜访方式 </label>
+<#--                    <div class="layui-input-block">-->
+<#--                        <input type="text"  name="visitType"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
+<#--                    </div>-->
+                    <select name="visitType">
+                        <option value="1">上门走访</option>
+                        <option value="2">电话拜访</option>
+                    </select>
+                </div>
+
+                <div class="layui-col-lg6">
+                        <label class="layui-form-label">拜访原因</label>
+                    <div class="layui-input-block">
+                        <input type="text"  name="visitReason"  placeholder="请输入"  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-lg6">
+                        <label class="layui-form-label">交流内容</label>
+                    <div class="layui-input-block">
+                        <input type="text"  name="content"  placeholder="请输入"  autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-lg6">
+                        <label class="layui-form-label">拜访时间</label>
+                    <div class="layui-input-block">
+<#--                        <input type="text"  name="visitDate"  placeholder="请输入"  autocomplete="off" class="layui-input">-->
+<#--                    -->
+                        <input type="text"  name="visitDate"  id="visitDate" placeholder="请输入"  autocomplete="off" class="layui-input">
+                </div>
+
 <#--                <div class="layui-col-lg6">-->
 <#--                        <label class="layui-form-label">录入人</label>-->
 <#--                    <div class="layui-input-block">-->
@@ -119,5 +121,5 @@
 
 <script src="${request.contextPath}/layuiadmin/layui/layui.js"></script>
 <script src="${request.contextPath}/layui-extend.js"></script>
-<script type="text/javascript" src="${request.contextPath}/scripts/user/linkman/add.js?_=${randomNum}"></script>
+<script type="text/javascript" src="${request.contextPath}/scripts/contacts/visit/add.js?_=${randomNum}"></script>
 </body>

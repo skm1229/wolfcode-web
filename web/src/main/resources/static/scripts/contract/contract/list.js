@@ -10,7 +10,7 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
     //用户列表
     var tableIns = table.render({
         elem: '#List',
-        url: web.rootPath() + 'customer/list',
+        url: web.rootPath() + 'contract/list',
         cellMinWidth: 95,
         page: true,
         height: "full-" + Math.round(Number($('.layui-card-header').height()) + 44),
@@ -21,26 +21,19 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
         cols: [[
             {type: "checkbox", fixed: "left", width: 50},
                     {field: 'id', title:  'id', minWidth: 100, align: "center"},
-                    {field: 'customerName', title: '企业名称', minWidth: 100, align: "center"},
-                    {field: 'legalLeader', title: '法定代表人', minWidth: 100, align: "center"},
-                    {field: 'registerDate', title: '成立时间', minWidth: 100, align: "center"},
-                    {field: 'openStatus', title: '经营状态', minWidth: 100, align: "center",templet: function (customer) {
-                        if (customer.openStatus == '0') {
-                            return "<button class=\"layui-btn layui-btn-normal layui-btn-xs\">开业</button>";
-                        } else if (customer.openStatus == '1') {
-                            return "<button class=\"layui-btn layui-btn-danger layui-btn-xs\">注销</button>";
-                        } else if (customer.openStatus == '2') {
-                            return "<button class=\"layui-btn layui-btn-disabled layui-btn-xs\">破产</button>";
-                        }
-                    }},
-                    {field: 'provinceName', title: '所属地区省份', minWidth: 100, align: "center"},
-                    {field: 'regCapital', title: '注册资本,(万元)', minWidth: 100, align: "center"},
-                    {field: 'industry', title: '所属行业', minWidth: 100, align: "center"},
-                    {field: 'scope', title: '经营范围', minWidth: 100, align: "center"},
-                    {field: 'regAddr', title: '注册地址', minWidth: 100, align: "center"},
+                    {field: 'custId', title: '客户id', minWidth: 100, align: "center"},
+                    {field: 'contractName', title: '合同名称', minWidth: 100, align: "center"},
+                    {field: 'contractCode', title: '合同编码', minWidth: 100, align: "center"},
+                    {field: 'amounts', title: '合同金额', minWidth: 100, align: "center"},
+                    {field: 'startDate', title: '合同生效开始时间', minWidth: 100, align: "center"},
+                    {field: 'endDate', title: '合同生效结束时间', minWidth: 100, align: "center"},
+                    {field: 'content', title: '合同内容', minWidth: 100, align: "center"},
+                    {field: 'affixSealStatus', title: '是否盖章确认 0 否 1 是', minWidth: 100, align: "center"},
+                    {field: 'auditStatus', title: '审核状态 0 未审核 1 审核通过 -1 审核不通过', minWidth: 100, align: "center"},
+                    {field: 'nullifyStatus', title: '是否作废 1 作废 0 在用', minWidth: 100, align: "center"},
+                    {field: 'inputUser', title: '录入人', minWidth: 100, align: "center"},
                     {field: 'inputTime', title: '录入时间', minWidth: 100, align: "center"},
                     {field: 'updateTime', title: '修改时间', minWidth: 100, align: "center"},
-                    {field: 'inputUserId', title: '录入人', minWidth: 100, align: "center"},
 
             {title: '操作', width: 160, templet: '#List-editBar', fixed: "right", align: "center"}
         ]],
@@ -70,16 +63,10 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
         reload: function () {
             //获取搜索条件值
             var parameterName = $("#searchForm").find("input[name='parameterName']").val().trim();
-            var cityId = $("#searchForm").find("select[name='cityId']").val().trim();
-            //获取经营状态下拉框的值
-            var openStatus = $("#searchForm").find("select[name='openStatus']").val().trim();
-
             //表格重载
             tableIns.reload({
                 where: { //设定异步数据接口的额外参数，任意设
-                    parameterName: parameterName,
-                    cityId: cityId,
-                    openStatus: openStatus
+                    parameterName: parameterName
                 }
             });
         }
@@ -101,7 +88,7 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
                 title: '新增',
                 fixed: false,
                 maxmin: true,
-                content: web.rootPath() + 'customer/add.html'
+                content: web.rootPath() + 'contract/add.html'
             });
         }
         ;
@@ -119,7 +106,7 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
                     title: '修改',
                     fixed: false,
                     maxmin: true,
-                    content: web.rootPath() + "customer/" + data.id + ".html?_"
+                    content: web.rootPath() + "contract/" + data.id + ".html?_"
                 });
                 break;
             case 'delete':
@@ -127,7 +114,7 @@ layui.use(['form', 'layer', 'table', 'laytpl', 'laydate'], function () {
                     btn: ['确定', '取消'] //按钮
                 }, function () {
                     $.ajax({
-                        url: web.rootPath() + "customer/delete/" + data.id,
+                        url: web.rootPath() + "contract/delete/" + data.id,
                         type: "delete",
                         contentType: "application/json;charset=utf-8",
                         data: JSON.stringify(data.field),

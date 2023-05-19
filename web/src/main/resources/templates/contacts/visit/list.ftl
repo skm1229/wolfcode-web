@@ -18,7 +18,7 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <@sec.authenticate grants="user:linkman:list">
+                <@sec.authenticate grants="contacts:visit:list">
 
                     <!-- 搜索条件start -->
                     <form class="layui-form layui-card-header layuiadmin-card-header-auto"
@@ -32,16 +32,37 @@
                                            class="layui-input">
                                 </div>
                             </div>
+
                             <div class="layui-inline">
-                                <label class="layui-form-label">所属企业</label>
+                                <label class="layui-form-label">拜访原因</label>
                                 <div class="layui-input-block input-box">
-                                    <select name="custId">
+                                    <input type="text" name="visitReason" placeholder="请输入"
+                                           autocomplete="off"
+                                           class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label">拜访方式</label>
+                                <div class="layui-input-block input-box">
+                                    <select name="visitType">
                                         <option value="">--请选择--</option>
-                                        <#list custs as cust>
-                                            <option value="${cust.id}">${cust.customerName}</option>
-                                        </#list>
+                                        <option value="1">上门拜访</option>
+                                        <option value="2">电话拜访</option>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="layui-inline">
+                                    <label class="layui-form-label">拜访时间</label>
+                                    <div class="layui-inline" id="ID-laydate-range">
+                                        <div class="layui-input-inline">
+                                            <input type="text" autocomplete="off" id="ID-laydate-start-date" class="layui-input" placeholder="开始日期">
+                                        </div>
+                                        <div class="layui-form-mid">-</div>
+                                        <div class="layui-input-inline">
+                                            <input type="text" autocomplete="off" id="ID-laydate-end-date" class="layui-input" placeholder="结束日期">
+                                        </div>
+                                    </div>
                             </div>
 
                             <div class="layui-inline">
@@ -62,31 +83,22 @@
 
                     <script type="text/html" id="List-toolbar">
                         <div class="layui-btn-container">
-                            <@sec.authenticate grants="user:linkman:add">
+                            <@sec.authenticate grants="contacts:visit:add">
                                 <button class="layui-btn layui-btn-sm layui-btn-primary"
                                         lay-event="add"><i class="layui-icon">&#xe654;</i>新增
                                 </button>
                             </@sec.authenticate>
-
-                            <button class="layui-btn layui-btn-sm layui-btn-primary" lay-tips="导出" lay-event="export">
-
-
-
-
-                                <i class="layui-icon layui-icon-export"></i>导出
-                            </button>
-
                         </div>
                     </script>
 
                     <script type="text/html" id="List-editBar">
-                        <@sec.authenticate grants="user:linkman:update">
-                            <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="update">
-                                <i class="layui-icon">&#xe642;</i>修改</a>
+                        <@sec.authenticate grants="contacts:visit:update">
+                            <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="update"><i
+                                        class="layui-icon">&#xe642;</i>修改</a>
                         </@sec.authenticate>
-                        <@sec.authenticate grants="user:linkman:delete">
-                            <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="delete">
-                                <i class="layui-icon">&#xe640;</i>删除</a>
+                        <@sec.authenticate grants="contacts:visit:delete">
+                            <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="delete"><i
+                                        class="layui-icon">&#xe640;</i>删除</a>
                         </@sec.authenticate>
                     </script>
                 </div>
@@ -99,8 +111,7 @@
 <script src="${request.contextPath}/layuiadmin/layui/layui.js"></script>
 <script src="${request.contextPath}/layui-extend.js"></script>
 <script src="${request.contextPath}/webjars/jquery/jquery.min.js"></script>
-<!--务必要引用 而且是在我们的 jquery.js后面 -->
-<script src="${request.contextPath}/fileDownload/jquery.fileDownload.min.js"></script>
-<script type="text/javascript" src="${request.contextPath}/scripts/user/linkman/list.js?_=${randomNum}"></script>
+
+<script type="text/javascript" src="${request.contextPath}/scripts/contacts/visit/list.js?_=${randomNum}"></script>
 </body>
 </html>
